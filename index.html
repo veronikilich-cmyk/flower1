@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Гибискус</title>
+  <!-- Подключаем model-viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  <style>
+    :root {
+      --primary: #D35400; /* Темно-оранжевый для акцентов */
+      --secondary: #F7DC6F; /* Нежно-желтый */
+      --bg-color: #FFFACD; /* Светлый фон для страницы (в тон краям градиента) */
+      --text-color: #4a3b32; /* Темно-коричневый для текста */
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      padding: 20px 0;
+      width: 100%;
+      background: linear-gradient(180deg, #da7c1f 0%, #f99a3c00 100%);
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      pointer-events: none;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      color: var(--secondary);
+    }
+    p {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      color: #F7DC6F;
+      letter-spacing: 0.5px;
+    }
+    .viewer-container {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #ff8597 0%, #f2d293 100%);
+      --poster-color: transparent;
+    }
+    model-viewer::part(default-ar-button) {
+      bottom: 120px; 
+      right: 20px;
+    }
+    /* Стилизация кнопки AR, которую добавляет model-viewer */
+    model-viewer::part(default-ar-button) {
+      background-color: var(--primary);
+      color: var(--secondary);
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(211, 84, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Цветущий Гибискус</h1>
+    <p>Наведи камеру или покрути модель</p>
+  </header>
+
+  <div class="viewer-container">
+    <model-viewer 
+      id="hibiscusViewer"
+      src="assets/hibiscus.glb" 
+      alt="3D модель цветущего гибискуса для XR проекта"
+      camera-controls 
+      auto-rotate 
+      ar 
+      ar-modes="webxr scene-viewer quick-look"
+      shadow-intensity="1"
+      environment-image="neutral"
+      exposure="1.2"
+      camera-orbit="80deg 70deg 2m"
+      camera-target="0.0m -0.2m 0"
+      min-camera-orbit="auto auto 0.4m"
+      max-camera-orbit="auto auto 3m"
+      touch-action="pan-y">
+      
+      <!-- Красивая заглушка, пока модель грузится -->
+      <div slot="poster" style="display: flex; justify-content: center; align-items: center; height: 100%; color: var(--secondary); font-style: italic;">
+        Распускаем лепестки...
+      </div>
+    </model-viewer>
+  </div>
+
+</body>
+</html>
